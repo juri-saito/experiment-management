@@ -1,0 +1,145 @@
+
+-- 親カテゴリ
+drop table if exists exp_categories cascade;
+
+create table exp_categories (
+  id integer primary key
+  , name text not null
+) ;
+
+-- 子カテゴリ
+drop table if exists exp_subcategories cascade;
+
+create table exp_subcategories (
+  id integer primary key
+  , name text not null
+  , exp_category_id integer not null
+) ;
+
+-- 孫カテゴリ
+drop table if exists exp_subsubcategories cascade;
+
+create table exp_subsubcategories (
+  id integer primary key
+  , exp_subcategories integer not null
+) ;
+
+-- 装置
+drop table if exists equipments cascade;
+
+create table equipments (
+  id integer primary key
+  , name text not null
+) ;
+
+-- 装置詳細
+drop table if exists equip_details cascade;
+
+create table equip_details (
+  id integer primary key
+  , equipment_id integer not null
+  , manufacturing_company text not null
+  , model_number text not null
+) ;
+
+-- 単位
+drop table if exists units cascade;
+
+create table units (
+  id integer primary key
+  , name text not null
+  , symbol text not null
+) ;
+
+-- 条件
+drop table if exists conditions cascade;
+
+create table conditions (
+  id integer primary key
+  , name text not null
+  , unit_id integer not null
+) ;
+
+-- 実験条件
+drop table if exists exp_conditions cascade;
+
+create table exp_conditions (
+  id integer primary key
+  , condition_id integer not null
+  , parameter_value integer not null
+) ;
+
+-- 測定項目
+drop table if exists measurements cascade;
+
+create table measurements (
+  id integer primary key
+  , name text not null
+  , unit_id integer not null
+) ;
+
+-- 測定結果
+drop table if exists meas_results cascade;
+
+create table meas_results (
+  id integer primary key
+  , measurement_id integer not null
+  , result_value integer not null
+) ;
+
+-- 画像
+drop table if exists images cascade;
+
+create table images (
+  id integer primary key
+  , image_path text not null
+) ;
+
+-- 孫カテゴリ⇔画像　関連テーブル
+create table subsubcats_images (
+  id integer primary key
+  , exp_subsubcategory_id integer not null
+  , image_id integer not null
+) ;
+
+-- 親カテゴリ⇔装置　関連テーブル
+create table cats_equips (
+  id integer primary key
+  , exp_category_id integer not null
+  , equipment_id integer not null
+) ;
+
+-- 親カテゴリ⇔条件　関連テーブル
+create table cats_conditions (
+  id integer primary key
+  , exp_category_id integer not null
+  , condition_id integer not null
+) ;
+
+-- 親カテゴリ⇔測定項目　関連テーブル
+create table cats_measurements (
+  id integer primary key
+  , exp_category_id integer not null
+  , measurement_id integer not null
+) ;
+
+-- 子カテゴリ⇔装置詳細　関連テーブル
+create table subcats_equips (
+  id integer primary key
+  , exp_subcategory_id integer not null
+  , equip_detail_id integer not null
+) ;
+
+-- 孫カテゴリ⇔実験条件　関連テーブル
+create table subsubcats_exp_conditions (
+  id integer primary key
+  , exp_subsubcategory_id integer not null
+  , exp_condition_id integer not null
+) ;
+
+-- 孫カテゴリ⇔測定結果　関連テーブル
+create table subsubcats_meas_results (
+  id integer primary key
+  , exp_subsubcategory_id integer not null
+  , meas_result_id integer not null
+) ;

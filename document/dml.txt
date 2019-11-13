@@ -1,0 +1,31 @@
+-- 単位
+insert into units values(1, '長さ', 'm');
+insert into units values(2, '質量', 'kg');
+insert into units values(3, '時間', 's');
+insert into units values(4, '電流', 'A');
+insert into units values(5, '熱力学温度', 'K');
+insert into units values(6, '物質量', 'mol');
+insert into units values(7, '光度', 'cd');
+insert into units values(8, '電圧', 'V');
+
+-- 装置
+insert into equipments values(1, '機械金属');
+insert into equipments values(2, '古河気合筋肉');
+insert into equipments values(3, '布留川機械');
+
+-- 機械詳細
+insert into equip_details values(1, 1, '古河機械金属', 'KNK-001');
+insert into equip_details values(2, 1, '古河気合筋肉', 'KNK-002');
+insert into equip_details values(3, 2, '古河機械金属', 'LOL-001');
+insert into equip_details values(4, 2, '古河気合筋肉', 'LOL-002');
+insert into equip_details values(5, 3, '古河機械金属', 'MPM-001');
+insert into equip_details values(6, 3, '古河気合筋肉', 'MPM-002');
+
+-- 条件
+insert into conditions values(1, '溶接電流', 4);
+insert into conditions values(2, '溶接電圧', 8);
+insert into conditions values(4, '溶接長', 1);
+
+-- 測定項目
+insert into measurements values(1, '溶け込み深さ', 1);
+insert into measurements values(1, 'ビード幅', 1);
